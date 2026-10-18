@@ -39,7 +39,7 @@
 //    });
 // };
 
-// export default errorMiddleware;
+
 
 
 const errorMiddleware = (err, req, res, next) => {
@@ -54,3 +54,5 @@ const errorMiddleware = (err, req, res, next) => {
 
     return res.status(statusCode).json({ success: false, message });
 };
+
+export default errorMiddleware;
