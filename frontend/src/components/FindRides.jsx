@@ -1,4 +1,3 @@
-
 import { useEffect, useState, useRef, useCallback } from "react";
 
 import { FaSearch, FaSlidersH, FaTimes } from "react-icons/fa";
@@ -597,19 +596,19 @@ const initialFilters = {
 
     return (
 
-        <main className="h-[calc(100dvh-72px)] overflow-hidden bg-slate-50 px-3 py-3 md:px-6">
+        <main className="h-[calc(100dvh-164px)] overflow-hidden bg-slate-50 px-3 py-2 md:px-6 md:py-3 lg:h-[calc(100dvh-72px)]">
 
             <div className="mx-auto flex h-full max-w-7xl flex-col">
 
                 <div className="mb-2 shrink-0">
 
-                    <h1 className="mt-1 text-2xl font-bold text-slate-900 md:text-3xl">
+                    <h1 className="text-xl font-bold text-slate-900 md:mt-1 md:text-3xl">
 
                         Find Rides
 
                     </h1>
 
-                    <p className="mt-1 text-sm text-slate-500">
+                    <p className="mt-1 hidden text-sm text-slate-500 md:block">
 
                         Find a comfortable and affordable ride for your journey.
 
@@ -630,7 +629,7 @@ const initialFilters = {
                         <button
                             type="button"
                             onClick={() => setShowFilters(true)}
-                            className="mb-3 flex shrink-0 items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-slate-700 shadow-sm lg:hidden"
+                            className="mb-2 flex shrink-0 items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-semibold text-slate-700 shadow-sm lg:hidden"
                         >
                             <FaSlidersH className="text-orange-500" />
                             Search &amp; Filters
@@ -661,11 +660,11 @@ const initialFilters = {
                             </div>
                         )}
 
-                        <div className="mb-4 flex shrink-0 flex-wrap items-center justify-between gap-3 rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+                        <div className="mb-3 flex shrink-0 items-center justify-between gap-2 rounded-xl border border-slate-200 bg-white p-3 shadow-sm lg:mb-4 lg:flex-wrap lg:gap-3 lg:p-4">
 
                             <div>
 
-                                <h2 className="font-bold text-slate-900">
+                                <h2 className="text-sm font-bold text-slate-900 lg:text-base">
 
                                     Available Rides
 
@@ -779,7 +778,3 @@ const initialFilters = {
 };
 
 export default FindRides;
-
-
-
-
