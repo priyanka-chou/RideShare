@@ -174,19 +174,37 @@ export const getAllUsersExceptMe = async (currentUserId) => {
             ) AS lastMessageTime,
             (u.id = ?) AS isMe
          FROM users u
-         ORDER BY u.name ASC`,
+         WHERE
+            u.id = ?
+            OR EXISTS (
+                SELECT 1 FROM messages m
+                WHERE (m.sender_id = ? AND m.receiver_id = u.id)
+                   OR (m.sender_id = u.id AND m.receiver_id = ?)
+            )
+            OR EXISTS (
+                SELECT 1 FROM bookings b
+                JOIN rides r ON r.id = b.ride_id
+                WHERE b.user_id = ? AND r.rider_id = u.id
+            )
+            OR EXISTS (
+                SELECT 1 FROM bookings b
+                JOIN rides r ON r.id = b.ride_id
+                WHERE r.rider_id = ? AND b.user_id = u.id
+            )
+         ORDER BY (lastMessageTime IS NULL), lastMessageTime DESC, u.name ASC`,
         [
-            currentUserId,
-            currentUserId,
-            currentUserId,
-            currentUserId,
-            currentUserId
+            currentUserId, currentUserId,   // lastMessage
+            currentUserId, currentUserId,   // lastMessageTime
+            currentUserId,                  // isMe
+            currentUserId,                  // WHERE u.id = me
+            currentUserId, currentUserId,   // chat history
+            currentUserId,                  // maine ride book ki
+            currentUserId                   // meri ride par booking
         ]
     );
 
     return rows;
 };
-
 
 
 
